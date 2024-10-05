@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import CommingSoon from '../components/Courses/ComingSoon'
-import { CallToAction } from '../components'
+import { CallToAction, FeaturedOn } from '../components'
 
 const Courses = () => {
   return (
@@ -1437,6 +1437,8 @@ const Courses = () => {
           </div>
         </div>
       </div>
+
+      <FeaturedOn />
       <CallToAction />
     </>
   )

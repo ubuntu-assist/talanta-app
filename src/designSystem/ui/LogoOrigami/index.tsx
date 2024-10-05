@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   SiEthereum,
-  SiBlockchaindotcom,
+  SiBitcoin,
   SiPolygon,
   SiCardano,
   SiBinance,
@@ -40,10 +40,9 @@ export const DivOrigami: React.FC = () => {
             {/* Cardano: blue background with white text */}
             <SiCardano />
           </LogoItem>,
-          <LogoItem key={4} className='bg-[#121D33] text-white'>
-            {' '}
-            {/* Blockchain.com: dark blue background with white text */}
-            <SiBlockchaindotcom />
+          <LogoItem key={4} className='bg-[#F7931A] text-white'>
+            {/* Bitcoin: orange background with white text */}
+            <SiBitcoin />
           </LogoItem>,
           <LogoItem key={5} className='bg-[#F0B90B] text-black'>
             {' '}

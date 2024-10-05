@@ -16,6 +16,7 @@ import {
   Team,
   TermsAndConditions,
 } from './pages'
+import EmailVerificationCallOut from './pages/EmailVerificationCallOut'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
         <Route path='forgot-password' element={<ForgotPassword />} />
+        <Route path='verify-account' element={<EmailVerificationCallOut />} />
         <Route path='/' element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path='community' element={<Community />} />

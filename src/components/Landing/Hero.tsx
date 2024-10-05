@@ -51,9 +51,7 @@ export function Hero() {
 
   return (
     <div>
-      <div className='h-full relative max-w-[1400px] mx-auto overflow-hidden bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-300 flex flex-col items-center justify-center md:pt-36 xl:rounded-3xl py-16 px-2 md:pb-16'>
-        <div className='absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none' />
-
+      <div className='h-full relative max-w-[1400px] mx-auto overflow-hidden bg-gradient-to-r from-[#28345c] via-[#161c34] to-[#28345c] flex flex-col items-center justify-center md:pt-36 xl:rounded-3xl py-16 px-2 md:pb-16'>
         <h1
           className={cn(
             'font-semibold text-3xl md:text-5xl lg:text-7xl text-white relative z-20'

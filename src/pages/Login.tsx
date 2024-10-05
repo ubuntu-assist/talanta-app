@@ -4,6 +4,8 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
+import useNotification from 'react-toast-popup'
+
 const formSchema = z.object({
   email: z.string().email('Invalid email address'),
   remember: z.boolean(),
@@ -28,9 +30,20 @@ const Login = () => {
     resolver: zodResolver(formSchema),
   })
 
+  const { NotificationComponent, triggerNotification } =
+    useNotification('top-right')
+
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     try {
       console.log(data)
+      triggerNotification({
+        type: 'success',
+        message:
+          "Login successful! Whether you're just starting or continuing your journey, we’re excited to have you.",
+        duration: 6000,
+        animation: 'slide',
+        onClose: () => {},
+      })
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError('root', {
@@ -43,6 +56,7 @@ const Login = () => {
 
   return (
     <section className='bg-gray-50'>
+      {NotificationComponent}
       <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-screen lg:py-0'>
         <a
           href='#'

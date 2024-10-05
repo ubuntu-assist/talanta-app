@@ -412,7 +412,7 @@ export const Footer: React.FC = () => {
                     className='text-gray-400 lg:hover:text-white duration-300'
                     to='/blog'
                   >
-                    Blogs
+                    Blog
                   </Link>
                 </div>
                 <div className='space-x-2 py-1 flex items-center'>
@@ -424,15 +424,7 @@ export const Footer: React.FC = () => {
                     Community
                   </Link>
                 </div>
-                <div className='space-x-2 py-1 flex items-center'>
-                  <a
-                    target='_self'
-                    className='text-gray-400 lg:hover:text-white duration-300'
-                    href='https://amigoscode.com/testimonials'
-                  >
-                    Testimonials
-                  </a>
-                </div>
+
                 <div className='space-x-2 py-1 flex items-center'>
                   <Link
                     target='_self'
@@ -441,15 +433,6 @@ export const Footer: React.FC = () => {
                   >
                     Support
                   </Link>
-                </div>
-                <div className='space-x-2 py-1 flex items-center'>
-                  <a
-                    target='_self'
-                    className='text-gray-400 lg:hover:text-white duration-300'
-                    href='https://amigoscode.com/newsletter'
-                  >
-                    Newsletter
-                  </a>
                 </div>
               </div>
             </div>

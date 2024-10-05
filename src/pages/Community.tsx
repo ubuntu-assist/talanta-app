@@ -24,7 +24,7 @@ export const RevealLinks = () => {
             </p>
           </div>
         </div>
-        <FlipLink href='#'>X (Twitter)</FlipLink>
+        <FlipLink href='#'>X</FlipLink>
         <FlipLink href='#'>Linkedin</FlipLink>
         <FlipLink href='#'>Facebook</FlipLink>
         <FlipLink href='#'>Instagram</FlipLink>
@@ -46,7 +46,7 @@ const FlipLink = ({ children, href }: { children: string; href: string }) => {
       initial='initial'
       whileHover='hovered'
       href={href}
-      className='relative block overflow-hidden whitespace-nowrap text-4xl font-black uppercase sm:text-7xl md:text-8xl lg:text-9xl'
+      className='relative block overflow-hidden whitespace-nowrap text-4xl font-black uppercase sm:text-7xl md:text-8xl lg:text-9xl text-center'
       style={{
         lineHeight: 0.75,
       }}

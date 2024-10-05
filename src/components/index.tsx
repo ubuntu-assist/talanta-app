@@ -8,6 +8,7 @@ import Testimonials from './Testimonials'
 import ScrollToTop from './ScrollToTop'
 import FrequentlyAskedQuestions from './Courses/FrequentlyAskedQuestions'
 import CallToAction from './CallToAction'
+import FeaturedOn from './Courses/FeaturedOn'
 
 export {
   SharedLayout,
@@ -20,4 +21,5 @@ export {
   ScrollToTop,
   FrequentlyAskedQuestions,
   CallToAction,
+  FeaturedOn,
 }

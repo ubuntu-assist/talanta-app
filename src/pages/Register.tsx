@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/images/app/talanta.png'
 import { DragCloseDrawerExample } from '../designSystem/ui/DragCloseDrawer'
 import { useState } from 'react'
@@ -39,6 +39,7 @@ type FormData = z.infer<typeof formSchema>
 
 const Register = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate()
 
   const {
     register,
@@ -58,6 +59,7 @@ const Register = () => {
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     try {
       console.log(data)
+      navigate('/verify-account')
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError('root', {

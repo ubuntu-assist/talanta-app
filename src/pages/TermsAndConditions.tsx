@@ -6,7 +6,7 @@ const TermsAndConditions = () => {
           <div className='py-6 space-y-4 md:space-y-6 text-center'>
             <div className=''>
               <p className='text-cyan-500 font-semibold mb-3 text-sm md:text-lg'>
-                Terms
+                Terms and Conditions
               </p>
               <h2 className='text-xl md:text-4xl font-semibold text-gray-900'>
                 Understand Our Terms

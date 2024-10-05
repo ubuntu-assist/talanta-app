@@ -63,7 +63,7 @@ const Options: React.FC<OptionsProps> = ({ votes, setVotes }) => {
 
   return (
     <div className='col-span-1 py-12'>
-      <h3 className='mb-6 text-3xl font-semibold text-gray-900'>
+      <h3 className='mb-6 text-3xl font-light text-gray-900'>
         What course would you like to see next on our platform?
       </h3>
       <div className='mb-6 space-y-2'>

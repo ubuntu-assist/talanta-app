@@ -16,11 +16,16 @@ import {
   Team,
   TermsAndConditions,
 } from './pages'
+import { useCookies } from 'react-cookie'
+import CookieConsent from './components/Auth/CookieConsent'
 
 function App() {
+  const [cookies] = useCookies(['cookieConsent'])
+
   return (
     <BrowserRouter>
       <ScrollToTop />
+      {!cookies.cookieConsent && <CookieConsent />}
       <Routes>
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />

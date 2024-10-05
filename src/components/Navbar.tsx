@@ -4,6 +4,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import logo from '../assets/images/app/talanta.png'
 import { Link } from 'react-router-dom'
 import EmptyStates from '../designSystem/ui/EmptyStates'
+import { LanguageSelectionModal } from '../designSystem/ui/AnimatedModal/usage'
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -166,7 +167,7 @@ const NavBar = () => {
                         show={isOpen}
                       >
                         <div
-                          className='fixed inset-0 bg-transparent backdrop-blur-lg'
+                          className='fixed inset-0 h-full w-full bg-black bg-opacity-50'
                           aria-hidden='true'
                         />
                       </Transition>
@@ -292,6 +293,8 @@ const NavBar = () => {
                 </div>
               </div>
             </div>
+            <div className='hidden lg:block w-0.5 h-8 bg-gray-700/10 rounded-full'></div>
+            <LanguageSelectionModal />
             <div className='hidden lg:block w-0.5 h-8 bg-gray-700/10 rounded-full'></div>
             <div className='hidden lg:flex'>
               <div className='flex space-x-3'>

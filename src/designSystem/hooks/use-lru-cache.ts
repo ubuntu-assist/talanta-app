@@ -1,17 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef } from 'react'
 
-interface Node {
+interface Node<T> {
   key: number
-  value: any
-  next: Node | null
+  value: T
+  next: Node<T> | null
 }
 
-class LRUCache {
+class LRUCache<T> {
   capacity: number
-  cache: { [key: string]: Node }
-  head: Node | null
-  tail: Node | null
+  cache: { [key: string]: Node<T> }
+  head: Node<T> | null
+  tail: Node<T> | null
 
   constructor(capacity: number) {
     this.capacity = capacity
@@ -20,7 +19,7 @@ class LRUCache {
     this.tail = null
   }
 
-  get(key: number): any {
+  get(key: number): T | null {
     if (this.cache[key]) {
       this.moveToFront(key)
       return this.cache[key].value
@@ -29,7 +28,7 @@ class LRUCache {
     return null
   }
 
-  put(key: number, value: any): void {
+  put(key: number, value: T): void {
     if (this.cache[key]) {
       this.cache[key].value = value
       this.moveToFront(key)
@@ -42,8 +41,8 @@ class LRUCache {
     }
   }
 
-  addToFront(key: number, value: any): void {
-    const newNode: Node = { key, value, next: null }
+  addToFront(key: number, value: T): void {
+    const newNode: Node<T> = { key, value, next: null }
 
     if (!this.head) {
       this.head = newNode
@@ -61,8 +60,8 @@ class LRUCache {
 
     if (current === this.head) return
 
-    let prev: Node | null = null
-    let node: Node | null = this.head
+    let prev: Node<T> | null = null
+    let node: Node<T> | null = this.head
 
     while (node && node.key !== key) {
       prev = node
@@ -108,12 +107,13 @@ class LRUCache {
   }
 }
 
-const useLRUCache = (capacity: number) => {
-  const cacheRef = useRef<LRUCache>(new LRUCache(capacity))
+// Use generics in the `useLRUCache` function
+const useLRUCache = <T>(capacity: number) => {
+  const cacheRef = useRef<LRUCache<T>>(new LRUCache<T>(capacity))
 
   return {
-    get: (key: number) => cacheRef.current.get(key),
-    put: (key: number, value: any) => cacheRef.current.put(key, value),
+    get: (key: number): T | null => cacheRef.current.get(key),
+    put: (key: number, value: T) => cacheRef.current.put(key, value),
   }
 }
 

@@ -8,7 +8,7 @@ interface TabContent {
 
 const DynamicContentLoader = () => {
   const [content, setContent] = useState<TabContent[]>([])
-  const { get, put } = useLRUCache(3)
+  const { get, put } = useLRUCache<TabContent>(3)
 
   const loadContent = async (id: number) => {
     await new Promise((resolve) => setTimeout(resolve, 1000))

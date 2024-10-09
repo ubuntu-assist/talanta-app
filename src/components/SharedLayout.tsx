@@ -18,6 +18,7 @@ const SharedLayout = () => {
       ></div>
       <section className='h-full'>
         <NavBar />
+
         <Outlet />
         <Footer />
       </section>

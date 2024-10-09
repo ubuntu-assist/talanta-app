@@ -105,9 +105,12 @@ const Register = () => {
                       className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5'
                       placeholder='name@company.com'
                       {...register('email')}
+                      aria-invalid={errors.email ? 'true' : 'false'}
                     />
                     {errors.email && (
-                      <p style={{ color: 'red' }}>{errors.email.message}</p>
+                      <p style={{ color: 'red' }} role='alert'>
+                        {errors.email.message}
+                      </p>
                     )}
                   </div>
                   <div>
@@ -123,9 +126,12 @@ const Register = () => {
                       placeholder='••••••••'
                       className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5'
                       {...register('password')}
+                      aria-invalid={errors.password ? 'true' : 'false'}
                     />
                     {errors.password && (
-                      <p style={{ color: 'red' }}>{errors.password.message}</p>
+                      <p style={{ color: 'red' }} role='alert'>
+                        {errors.password.message}
+                      </p>
                     )}
                   </div>
                   <div>
@@ -141,9 +147,10 @@ const Register = () => {
                       placeholder='••••••••'
                       className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5'
                       {...register('confirmPassword')}
+                      aria-invalid={errors.confirmPassword ? 'true' : 'false'}
                     />
                     {errors.confirmPassword && (
-                      <p style={{ color: 'red' }}>
+                      <p style={{ color: 'red' }} role='alert'>
                         {errors.confirmPassword.message}
                       </p>
                     )}

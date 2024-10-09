@@ -13,7 +13,7 @@ const CallToAction = () => {
           </div>
           <a
             href='#'
-            className='flex items-center gap-2 bg-white rounded-full shadow-sm text-lg text-cyan-600 font-semibold py-4 px-8 transition-all duration-500'
+            className='flex items-center gap-2 bg-white rounded-full shadow-sm text-lg text-slate-700 font-semibold py-4 px-8 transition-all duration-500'
           >
             Get Started
           </a>

@@ -1,6 +1,6 @@
 import { Dialog, Transition, DialogPanel } from '@headlessui/react'
 import axios from 'axios'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState, useTransition } from 'react'
 import logo from '../assets/images/app/talanta.png'
 import { Link } from 'react-router-dom'
 import EmptyStates from '../designSystem/ui/EmptyStates'
@@ -11,6 +11,20 @@ const NavBar = () => {
   const [results, setResults] = useState([])
   const [selectedIndex, setSelectedIndex] = useState(0)
   const resultsRefs = useRef<(HTMLLIElement | null)[]>([])
+  const [tab, setTab] = useState('courses')
+  const [, startTransition] = useTransition()
+
+  function switchTab(tab: string) {
+    startTransition(() => {
+      setTab(tab)
+    })
+  }
+
+  function setStyles(thisTab: string) {
+    return {
+      color: tab === thisTab ? 'dodgerblue' : 'black',
+    }
+  }
 
   const isAppleOs = () => {
     const ua = navigator.userAgent
@@ -83,18 +97,30 @@ const NavBar = () => {
           </Link>
           <div className='hidden lg:flex items-center space-x-8'>
             <div>
-              <button className='font-medium text-gray-tertiary hover:text-black duration-150'>
+              <button
+                className='font-medium text-gray-tertiary hover:text-black duration-150'
+                onClick={() => switchTab('courses')}
+                style={setStyles('courses')}
+              >
                 <Link to='/courses'>Courses</Link>
               </button>
             </div>
 
             <div>
-              <button className='font-medium text-gray-tertiary hover:text-black duration-150'>
+              <button
+                className='font-medium text-gray-tertiary hover:text-black duration-150'
+                onClick={() => switchTab('community')}
+                style={setStyles('community')}
+              >
                 <Link to='/community'>Community</Link>
               </button>
             </div>
             <div>
-              <button className='font-medium text-gray-tertiary hover:text-black duration-150'>
+              <button
+                className='font-medium text-gray-tertiary hover:text-black duration-150'
+                onClick={() => switchTab('blog')}
+                style={setStyles('blog')}
+              >
                 <Link to='/blog'>Blog</Link>
               </button>
             </div>

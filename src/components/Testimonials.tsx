@@ -23,7 +23,7 @@ const Testimonials = ({ isGray = true }) => {
           <SenjaEmbed widgetId='d20696ed-4719-4fca-ba8f-02348d46c49c' />
           <div className='max-w-xs mx-auto'>
             <a href='https://amigoscode.com/testimonials'>
-              <button className='flex font-medium items-center duration-300 w-full disabled:cursor-not-allowed whitespace-nowrap disabled:opacity-50 disabled:hover:shadow-none bg-cyan-500 rounded-lg justify-center text-white text-sm md:text-base py-2 px-4 md:py-3 md:px-5'>
+              <button className='flex font-medium items-center duration-300 w-full disabled:cursor-not-allowed whitespace-nowrap disabled:opacity-50 disabled:hover:shadow-none bg-cyan-500 rounded-lg justify-center text-black text-sm md:text-base py-2 px-4 md:py-3 md:px-5'>
                 <div className=''>View all Testimonials</div>
               </button>
             </a>

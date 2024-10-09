@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
 
                   <div>
                     <button
-                      className='flex font-medium items-center justify-center w-full bg-accent text-white px-4 py-2.5 rounded-md transition duration-300 ease-in-out hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:cursor-not-allowed whitespace-nowrap disabled:opacity-50 disabled:hover:bg-accent disabled:hover:shadow-none bg-cyan-600'
+                      className='flex font-medium items-center justify-center w-full bg-accent text-black px-4 py-2.5 rounded-md transition duration-300 ease-in-out hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:cursor-not-allowed whitespace-nowrap disabled:opacity-50 disabled:hover:bg-accent disabled:hover:shadow-none bg-cyan-500'
                       type='submit'
                     >
                       Subscribe

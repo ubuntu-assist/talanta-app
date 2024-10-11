@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ProgressBar from '../components/ProgressBar'
+import MultiSelectSearch from '../components/MultiSelectSearch'
 
 const ErrorPage = () => {
   const [value, setValue] = useState(0)
@@ -14,10 +15,11 @@ const ErrorPage = () => {
 
   return (
     <section className='bg-white'>
-      <ProgressBar value={value} onComplete={() => setSuccess(true)} />
-      <span>{success ? 'Complete!' : 'Loading...'}</span>
       <div className='py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6'>
         <div className='mx-auto max-w-screen-sm text-center'>
+          <ProgressBar value={value} onComplete={() => setSuccess(true)} />
+          <span>{success ? 'Complete!' : 'Loading...'}</span>
+          <MultiSelectSearch />
           <h1 className='mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600 dark:text-primary-500'>
             404
           </h1>

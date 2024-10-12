@@ -1,18 +1,21 @@
+import { useTranslation } from 'react-i18next'
+
 export function Features() {
+  const { t } = useTranslation(['home'])
+
   return (
     <div className='w-full px-2.5 md:py-24 py-12 bg-gray-50'>
       <div className='max-w-[1400px] mx-auto'>
         <div className='py-6 space-y-4 md:space-y-6'>
           <div className=''>
             <p className='text-cyan-500 font-semibold mb-3 text-sm md:text-lg'>
-              Features
+              {t('features.section_title')}
             </p>
             <h2 className='text-xl md:text-4xl font-semibold mb-3 text-gray-900'>
-              Why TalantaChain?
+              {t('features.why_title')}
             </h2>
-            <p className='md:text-lg max-w-2xl text-gray-700'>
-              Dive into expert-led courses to master in-demand skills and
-              advance your career.
+            <p className='md:text-lg text-gray-700'>
+              {t('features.description')}
             </p>
           </div>
         </div>
@@ -72,11 +75,12 @@ export function Features() {
                   </svg>
                 </div>
                 <h2 className='lg: mt-6 flex items-center text-base font-semibold tracking-wide text-gray-800 lg:mt-6 lg:text-2xl'>
-                  <span className='mr-5 text-2xl'>Learn Interactively</span>
+                  <span className='mr-5 text-2xl'>
+                    {t('features.interactive_learning.title')}
+                  </span>
                 </h2>
                 <p className='lg: mt-1 text-sm tracking-normal text-gray-800 lg:mt-1 lg:text-xl'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                  eligendi dolore ipsum.
+                  {t('features.interactive_learning.description')}
                 </p>
               </div>
             </div>

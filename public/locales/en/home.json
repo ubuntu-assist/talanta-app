@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "title": "Learn Code",
+    "highlight": "Thrive",
+    "description": "Join 100,000+ blockchain learners and professionals. Trusted by industry leaders!",
+    "cta": "Our Talanta engineers thrive at top blockchain companies."
+  },
+  "features": {
+    "section_title": "Features",
+    "why_title": "Why TalantaChain?",
+    "description": "Dive into expert-led courses to master in-demand skills and advance your career.",
+    "interactive_learning": {
+      "title": "Learn Interactively",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi eligendi dolore ipsum."
+    }
+  }
+}

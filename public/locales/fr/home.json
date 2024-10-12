@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "title": "Apprenez Codez",
+    "highlight": "Prospérez",
+    "description": "Rejoignez plus de 100 000 apprenants et professionnels de la blockchain. Approuvé par les leaders de l'industrie !",
+    "cta": "Nos ingénieurs Talanta s'épanouissent dans les meilleures entreprises blockchain."
+  },
+  "features": {
+    "section_title": "Fonctionnalités",
+    "why_title": "Pourquoi TalantaChain?",
+    "description": "Plongez dans des cours dirigés par des experts pour maîtriser des compétences recherchées et faire progresser votre carrière.",
+    "interactive_learning": {
+      "title": "Apprenez de manière interactive",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi eligendi dolore ipsum."
+    }
+  }
+}

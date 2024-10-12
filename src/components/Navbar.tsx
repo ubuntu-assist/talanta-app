@@ -4,7 +4,7 @@ import { Fragment, useEffect, useRef, useState, useTransition } from 'react'
 import logo from '../assets/images/app/talanta.png'
 import { Link } from 'react-router-dom'
 import EmptyStates from '../designSystem/ui/EmptyStates'
-import { LanguageSelectionModal } from '../designSystem/ui/AnimatedModal/usage'
+import { LanguageSelectionModal } from '../designSystem/ui/LanguageSelector/usage'
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false)

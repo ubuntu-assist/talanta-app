@@ -1,6 +1,10 @@
 'use client'
 
-import { CloudDownloadOutlined, CopyOutlined } from '@ant-design/icons'
+import {
+  CloudDownloadOutlined,
+  CopyOutlined,
+  CopyFilled,
+} from '@ant-design/icons'
 import ceoProfile from '../assets/images/app/ceo-talanta.png'
 import {
   CallToAction,
@@ -9,8 +13,16 @@ import {
 } from '../components'
 import SingleTestimonial from '../components/SingleTestimonial'
 import CourseContent from '../components/Courses/CourseContent'
+import { useCopyToClipboard } from '@uidotdev/usehooks'
+
+const randomHash = crypto.randomUUID()
 
 const CourseDetails = () => {
+  const [copiedText, copyToClipboard] = useCopyToClipboard()
+  const hasCopiedText = Boolean(copiedText)
+
+  console.log(hasCopiedText)
+
   return (
     <>
       <section className='py-12 px-2 bg-gray-50'>
@@ -423,8 +435,14 @@ const CourseDetails = () => {
                       </a>
                     </div>
                     <p className=' text-gray-500'>or</p>
-                    <button className='rounded-xl flex items-center space-x-2 justify-center h-10 md:h-11 px-2 md:px-3 bg-accent/20 hover:scale-105 duration-200  border border-gray-border hover:shadow-lg'>
-                      <CopyOutlined />
+                    <button
+                      className={`rounded-xl flex items-center space-x-2 justify-center h-10 md:h-11 px-2 md:px-3 bg-accent/20 hover:scale-105 duration-200 border border-gray-border hover:shadow-lg ${
+                        !hasCopiedText ? 'cursor-pointer' : 'cursor-not-allowed'
+                      }`}
+                      disabled={hasCopiedText}
+                      onClick={() => copyToClipboard(randomHash)}
+                    >
+                      {!hasCopiedText ? <CopyOutlined /> : <CopyFilled />}
                       <p className='text-sm text-gray-500 whitespace-nowrap hidden md:flex '>
                         Copy link
                       </p>
@@ -1821,8 +1839,18 @@ const CourseDetails = () => {
                     </button>
                   </div>
                   <p className='text-gray-500'>or</p>
-                  <button className='rounded-xl flex items-center space-x-2 justify-center h-10 md:h-11 px-2 md:px-3 bg-accent/20 hover:scale-105 duration-200  border border-gray-border hover:shadow-lg'>
-                    <CopyOutlined className='text-gray-700' />
+                  <button
+                    className={`rounded-xl flex items-center space-x-2 justify-center h-10 md:h-11 px-2 md:px-3 bg-accent/20 hover:scale-105 duration-200 border border-gray-border hover:shadow-lg ${
+                      !hasCopiedText ? 'cursor-pointer' : 'cursor-not-allowed'
+                    }`}
+                    disabled={hasCopiedText}
+                    onClick={() => copyToClipboard(randomHash)}
+                  >
+                    {!hasCopiedText ? (
+                      <CopyOutlined className='text-gray-700' />
+                    ) : (
+                      <CopyFilled className='text-gray-700' />
+                    )}
                     <p className='text-sm text-gray-500 whitespace-nowrap hidden md:flex '>
                       Copy link
                     </p>

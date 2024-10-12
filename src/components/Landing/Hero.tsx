@@ -8,8 +8,11 @@ import photoSix from '../../assets/images/hero/hero-6.avif'
 
 import { AnimatedTooltip } from '../../designSystem/ui/AnimatedTooltips'
 import { DivOrigami } from '../../designSystem/ui/LogoOrigami'
+import { useTranslation } from 'react-i18next'
 
 export function Hero() {
+  const { t } = useTranslation(['home'])
+
   const people = [
     {
       id: 1,
@@ -57,18 +60,18 @@ export function Hero() {
             'font-semibold text-3xl md:text-5xl lg:text-7xl text-white relative z-20'
           )}
         >
-          Learn Blockchain <span className='text-cyan-300'>Thrive</span>
+          {t('hero.title')}{' '}
+          <span className='text-cyan-300'>{t('hero.highlight')}</span>
         </h1>
         <p className='text-center mt-2 text-white relative z-20 lg:text-xl max-w-xl'>
-          Join 100,000+ blockchain learners and professionals. Trusted by
-          industry leaders!
+          {t('hero.description')}
         </p>
 
         <div className='flex flex-row items-center justify-center w-full mt-10'>
           <AnimatedTooltip items={people} />
         </div>
         <p className='text-sm lg:text-lg z-20 text-white text-center mt-10'>
-          Our Talanta engineers thrive at top blockchain companies.
+          {t('hero.cta')}
         </p>
         <DivOrigami />
       </div>

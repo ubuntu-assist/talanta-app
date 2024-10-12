@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './styles.css'
 import Pill from './Pill'
+import { useDebounce } from '@uidotdev/usehooks'
 
 interface User {
   id: number
@@ -23,29 +24,38 @@ const MultiSelectSearch = () => {
   const [selectedUsers, setSelectedUsers] = useState<User[]>([])
   const [selectedUserSet, setSelectedUserSet] = useState<Set<string>>(new Set())
   const [activeSuggestion, setActiveSuggestion] = useState<number>(-1)
+  const debouncedSearchTerm = useDebounce(searchTerm, 1000)
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      if (searchTerm.trim() === '') {
-        setSuggestions(null)
-        return
+    const fetchUsers = async (
+      debouncedSearchTerm: string
+    ): Promise<UserResponse | null> => {
+      if (debouncedSearchTerm.trim() === '') {
+        return null
       }
 
       try {
         const res = await fetch(
-          `https://dummyjson.com/users/search?q=${searchTerm}`
+          `https://dummyjson.com/users/search?q=${debouncedSearchTerm}`
         )
         const data: UserResponse = await res.json()
-        setSuggestions(data)
+        return data
       } catch (error) {
         console.error('Failed to fetch users', error)
-        setSuggestions(null)
+        return null
       }
     }
 
-    fetchUsers()
-  }, [searchTerm])
+    const searchSuggestions = async () => {
+      if (debouncedSearchTerm) {
+        const data = await fetchUsers(debouncedSearchTerm)
+        setSuggestions(data)
+      }
+    }
+
+    searchSuggestions()
+  }, [debouncedSearchTerm])
 
   const handleSelectUser = (user: User) => {
     setSelectedUsers([...selectedUsers, user])

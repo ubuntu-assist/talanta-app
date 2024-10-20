@@ -5,7 +5,7 @@ import { TypewriterEffectSmooth } from '../../designSystem/ui/TypewriterEffect'
 import { BackgroundBeamsWithCollision } from '../../designSystem/ui/BackgroundLines'
 
 // NOTE: Change this date to whatever date you want to countdown to :)
-const COUNTDOWN_FROM = '2024-10-15'
+const COUNTDOWN_FROM = '2024-10-30'
 
 const SECOND = 1000
 const MINUTE = SECOND * 60

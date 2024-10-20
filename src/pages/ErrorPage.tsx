@@ -1,24 +1,44 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import ProgressBar from '../components/ProgressBar'
+// import ProgressBar from '../components/ProgressBar'
 import MultiSelectSearch from '../components/MultiSelectSearch'
+import Stepper from '../designSystem/ui/Stepper'
 
 const ErrorPage = () => {
-  const [value, setValue] = useState(0)
-  const [success, setSuccess] = useState(false)
+  // const [value, setValue] = useState(0)
+  // const [success, setSuccess] = useState(false)
 
-  useEffect(() => {
-    setInterval(() => {
-      setValue((val) => val + 0.1)
-    }, 20)
-  }, [])
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     setValue((val) => val + 0.1)
+  //   }, 20)
+  // }, [])
+
+  const CHECKOUT_STEPS = [
+    {
+      name: 'Customer Info',
+      Component: () => <div>Provide your contact details.</div>,
+    },
+    {
+      name: 'Shipping Info',
+      Component: () => <div>Enter your shipping address.</div>,
+    },
+    {
+      name: 'Payment',
+      Component: () => <div>Complete payment for your order.</div>,
+    },
+    {
+      name: 'Delivered',
+      Component: () => <div> Your order has been delivered.</div>,
+    },
+  ]
 
   return (
     <section className='bg-white'>
       <div className='py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6'>
         <div className='mx-auto max-w-screen-sm text-center'>
-          <ProgressBar value={value} onComplete={() => setSuccess(true)} />
-          <span>{success ? 'Complete!' : 'Loading...'}</span>
+          {/* <ProgressBar value={value} onComplete={() => setSuccess(true)} />
+          <span>{success ? 'Complete!' : 'Loading...'}</span> */}
+          <Stepper stepsConfig={CHECKOUT_STEPS} />
           <MultiSelectSearch />
           <h1 className='mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600 dark:text-primary-500'>
             404

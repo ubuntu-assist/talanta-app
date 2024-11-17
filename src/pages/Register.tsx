@@ -1,14 +1,23 @@
 import logo from '../assets/images/app/talanta.png'
 import { DragCloseDrawerExample } from '../designSystem/ui/DragCloseDrawer'
 import { useState } from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import EmailVerificationCallOut from './EmailVerificationCallOut'
 import { Link } from 'react-router-dom'
+import PasswordInput from '../designSystem/ui/PasswordInput'
+import { PhoneInput } from '@/designSystem/ui/PhoneInput'
+import { isValidPhoneNumber } from 'react-phone-number-input'
 
 const formSchema = z
   .object({
+    phone: z
+      .string()
+      .min(1, 'Phone number is required')
+      .refine((value) => value && isValidPhoneNumber(value), {
+        message: 'Invalid phone number',
+      }),
     email: z.string().email('Invalid email address'),
     password: z
       .string()
@@ -43,6 +52,7 @@ const Register = () => {
   const [showOtpInput, setShowOtpInput] = useState(false)
 
   const {
+    control,
     register,
     handleSubmit,
     setError,
@@ -50,6 +60,7 @@ const Register = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     defaultValues: {
+      phone: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -108,12 +119,12 @@ const Register = () => {
                       aria-invalid={errors.email ? 'true' : 'false'}
                     />
                     {errors.email && (
-                      <p style={{ color: 'red' }} role='alert'>
+                      <p className='text-red-500 text-sm mt-1'>
                         {errors.email.message}
                       </p>
                     )}
                   </div>
-                  <div>
+                  {/* <div>
                     <label
                       htmlFor='password'
                       className='block mb-2 text-sm font-medium text-gray-900'
@@ -133,7 +144,35 @@ const Register = () => {
                         {errors.password.message}
                       </p>
                     )}
+                  </div> */}
+                  {/* Phone Input Field */}
+
+                  <div className='flex flex-col items-start'>
+                    <label htmlFor='phone' className='text-left'>
+                      Phone Number
+                    </label>
+
+                    <Controller
+                      name='phone'
+                      control={control}
+                      render={({ field }) => (
+                        <PhoneInput
+                          {...field}
+                          id='phone'
+                          placeholder='Enter a phone number'
+                          className='w-full border rounded-lg'
+                        />
+                      )}
+                    />
+
+                    {errors.phone && (
+                      <p className='text-red-500 text-sm mt-1'>
+                        {errors.phone.message}
+                      </p>
+                    )}
                   </div>
+
+                  <PasswordInput />
                   <div>
                     <label
                       htmlFor='confirm-password'
@@ -150,7 +189,7 @@ const Register = () => {
                       aria-invalid={errors.confirmPassword ? 'true' : 'false'}
                     />
                     {errors.confirmPassword && (
-                      <p style={{ color: 'red' }} role='alert'>
+                      <p className='text-red-500 text-sm mt-1'>
                         {errors.confirmPassword.message}
                       </p>
                     )}

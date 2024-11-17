@@ -1,154 +1,41 @@
-import { useEffect, useRef, useState } from 'react'
-import './styles.css'
-import Pill from './Pill'
-import { useDebounce } from '@uidotdev/usehooks'
+import { useState } from 'react'
+import { Cat, Dog, Fish, Rabbit, Turtle } from 'lucide-react'
+import { MultiSelect } from '@/components/core/multi-selector'
 
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  email: string
-  image: string
-}
+const frameworksList = [
+  { value: 'react', label: 'React', icon: Turtle },
+  { value: 'nextjs', label: 'Nextjs', icon: Cat },
+  { value: 'vue', label: 'Vue', icon: Dog },
+  { value: 'svelte', label: 'Svelte', icon: Rabbit },
+  { value: 'ember', label: 'Ember', icon: Fish },
+]
 
-interface UserResponse {
-  users: User[]
-  total: number
-  skip: number
-  limit: number
-}
-
-const MultiSelectSearch = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('')
-  const [suggestions, setSuggestions] = useState<UserResponse | null>(null)
-  const [selectedUsers, setSelectedUsers] = useState<User[]>([])
-  const [selectedUserSet, setSelectedUserSet] = useState<Set<string>>(new Set())
-  const [activeSuggestion, setActiveSuggestion] = useState<number>(-1)
-  const debouncedSearchTerm = useDebounce(searchTerm, 1000)
-  const inputRef = useRef<HTMLInputElement | null>(null)
-
-  useEffect(() => {
-    const fetchUsers = async (
-      debouncedSearchTerm: string
-    ): Promise<UserResponse | null> => {
-      if (debouncedSearchTerm.trim() === '') {
-        return null
-      }
-
-      try {
-        const res = await fetch(
-          `https://dummyjson.com/users/search?q=${debouncedSearchTerm}`
-        )
-        const data: UserResponse = await res.json()
-        return data
-      } catch (error) {
-        console.error('Failed to fetch users', error)
-        return null
-      }
-    }
-
-    const searchSuggestions = async () => {
-      if (debouncedSearchTerm) {
-        const data = await fetchUsers(debouncedSearchTerm)
-        setSuggestions(data)
-      }
-    }
-
-    searchSuggestions()
-  }, [debouncedSearchTerm])
-
-  const handleSelectUser = (user: User) => {
-    setSelectedUsers([...selectedUsers, user])
-    setSelectedUserSet(new Set([...selectedUserSet, user.email]))
-    setSearchTerm('')
-    setSuggestions(null)
-    inputRef.current?.focus()
-  }
-
-  const handleRemoveUser = (user: User) => {
-    const updatedUsers = selectedUsers.filter(
-      (selectedUser) => selectedUser.id !== user.id
-    )
-    setSelectedUsers(updatedUsers)
-
-    const updatedEmails = new Set(selectedUserSet)
-    updatedEmails.delete(user.email)
-    setSelectedUserSet(updatedEmails)
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (
-      e.key === 'Backspace' &&
-      e.currentTarget.value === '' &&
-      selectedUsers.length > 0
-    ) {
-      const lastUser = selectedUsers[selectedUsers.length - 1]
-      handleRemoveUser(lastUser)
-      setSuggestions(null)
-    } else if (e.key === 'ArrowDown' && suggestions?.users?.length) {
-      e.preventDefault()
-      setActiveSuggestion((prevIndex) =>
-        prevIndex < suggestions.users.length - 1 ? prevIndex + 1 : prevIndex
-      )
-    } else if (e.key === 'ArrowUp' && suggestions?.users?.length) {
-      e.preventDefault()
-      setActiveSuggestion((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0))
-    } else if (
-      e.key === 'Enter' &&
-      activeSuggestion >= 0 &&
-      activeSuggestion < suggestions!.users.length
-    ) {
-      handleSelectUser(suggestions!.users[activeSuggestion])
-    }
-  }
+function MultiSelector() {
+  const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>([
+    'nextjs',
+    'svelte',
+  ])
 
   return (
-    <div className='user-search-container'>
-      <div className='user-search-input'>
-        {/* Pills */}
-        {selectedUsers.map((user) => (
-          <Pill
-            key={user.email}
-            image={user.image}
-            text={`${user.firstName} ${user.lastName}`}
-            onClick={() => handleRemoveUser(user)}
-          />
-        ))}
-        <div>
-          <input
-            type='text'
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder='Search for a user...'
-            ref={inputRef}
-            onKeyDown={handleKeyDown}
-          />
-          {/* Search Suggestions */}
-          <ul className='suggestions-list'>
-            {suggestions?.users?.map((user: User, index: number) => {
-              return !selectedUserSet.has(user.email) ? (
-                <li
-                  key={user.email}
-                  onClick={() => handleSelectUser(user)}
-                  className={index === activeSuggestion ? 'active' : ''}
-                >
-                  <img
-                    src={user.image}
-                    alt={`${user.firstName} ${user.lastName}`}
-                  />
-                  <span>
-                    {user.firstName} {user.lastName}
-                  </span>
-                </li>
-              ) : (
-                <></>
-              )
-            })}
-          </ul>
-        </div>
+    <div className='pt-8 pb-16 w-96 mx-auto'>
+      <MultiSelect
+        options={frameworksList}
+        onValueChange={setSelectedFrameworks}
+        defaultValue={selectedFrameworks}
+        placeholder='Select frameworks'
+        popoverClass='w-96'
+        maxCount={3}
+      />
+      <div className='mt-4'>
+        <h2 className='text-xl font-semibold'>Selected Frameworks:</h2>
+        <ul className='list-disc list-inside'>
+          {selectedFrameworks.map((framework) => (
+            <li key={framework}>{framework}</li>
+          ))}
+        </ul>
       </div>
     </div>
   )
 }
 
-export default MultiSelectSearch
+export default MultiSelector
